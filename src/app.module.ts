@@ -6,7 +6,7 @@ import { AppService } from './app.service';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: `.${process.env.NODE_ENV}.env`,
+      envFilePath: `./src/environments/.${process.env.NODE_ENV}.env`,
       isGlobal: true,
     }),
   ],
