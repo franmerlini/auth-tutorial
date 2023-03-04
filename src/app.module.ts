@@ -3,7 +3,8 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { DataSoruceConfig } from './config';
+import { DataSourceConfig } from './config';
+import { ProjectsModule, UsersModule } from './modules';
 
 @Module({
   imports: [
@@ -12,8 +13,10 @@ import { DataSoruceConfig } from './config';
       isGlobal: true,
     }),
     TypeOrmModule.forRoot({
-      ...DataSoruceConfig,
+      ...DataSourceConfig,
     }),
+    UsersModule,
+    ProjectsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

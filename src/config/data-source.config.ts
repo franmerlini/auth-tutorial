@@ -8,7 +8,7 @@ ConfigModule.forRoot({
 
 const configService = new ConfigService();
 
-export const DataSoruceConfig: DataSourceOptions = {
+export const DataSourceConfig: DataSourceOptions = {
   type: 'postgres',
   host: configService.get('DB_HOST'),
   port: configService.get('DB_PORT'),
@@ -23,4 +23,4 @@ export const DataSoruceConfig: DataSourceOptions = {
   namingStrategy: new SnakeNamingStrategy(),
 };
 
-export const AppDataSource = new DataSource(DataSoruceConfig);
+export const AppDataSource = new DataSource(DataSourceConfig);
