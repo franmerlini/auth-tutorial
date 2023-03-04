@@ -3,12 +3,12 @@ version: '3.7'
 services:
   db:
     image: postgres:15.2
-    container_name: auth-tutorial
+    container_name: db-authtutorial
     restart: always
     environment:
-      POSTGRES_DB: auth-tutorial
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: authtutorial
+      POSTGRES_USER: franmerlini
+      POSTGRES_PASSWORD: kenzito
     volumes:
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
