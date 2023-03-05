@@ -1,10 +1,10 @@
 import { Column, Entity, OneToMany } from 'typeorm';
 import { BaseEntity } from '../../../models';
-import { UserProjects } from '../../../modules/users/entities';
+import { UserProjectsEntity } from '../../../modules/users/entities';
 import { IProject } from '../interfaces';
 
 @Entity({ name: 'projects' })
-export class Project extends BaseEntity implements IProject {
+export class ProjectEntity extends BaseEntity implements IProject {
   @Column()
   name: string;
 
@@ -20,6 +20,6 @@ export class Project extends BaseEntity implements IProject {
   @Column()
   status: string;
 
-  @OneToMany(() => UserProjects, (userProjects) => userProjects.project)
-  users: UserProjects[];
+  @OneToMany(() => UserProjectsEntity, (userProjects) => userProjects.project)
+  users: UserProjectsEntity[];
 }

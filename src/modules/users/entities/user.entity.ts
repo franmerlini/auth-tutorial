@@ -2,10 +2,10 @@ import { Column, Entity, OneToMany } from 'typeorm';
 import { Roles } from '../../../enums';
 import { BaseEntity } from '../../../models';
 import { IUser } from '../interfaces';
-import { UserProjects } from './user-projects.entity';
+import { UserProjectsEntity } from './user-projects.entity';
 
 @Entity({ name: 'users' })
-export class User extends BaseEntity implements IUser {
+export class UserEntity extends BaseEntity implements IUser {
   @Column()
   firstName: string;
 
@@ -21,6 +21,6 @@ export class User extends BaseEntity implements IUser {
   @Column({ type: 'enum', enum: Roles })
   role: Roles;
 
-  @OneToMany(() => UserProjects, (userProjects) => userProjects.user)
-  projects: UserProjects[];
+  @OneToMany(() => UserProjectsEntity, (userProjects) => userProjects.user)
+  projects: UserProjectsEntity[];
 }
