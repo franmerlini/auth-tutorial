@@ -1,3 +1,4 @@
+import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import * as morgan from 'morgan';
@@ -11,6 +12,13 @@ async function bootstrap() {
   // CONFIGURATIONS
   app.enableCors(CORS);
   app.setGlobalPrefix('api');
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transformOptions: {
+        enableImplicitConversion: true,
+      },
+    }),
+  );
 
   // MIDLEWARES
   app.use(morgan('dev'));
