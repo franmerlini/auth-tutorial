@@ -1,7 +1,8 @@
-import { IsEnum, IsOptional, IsString } from 'class-validator';
+import { IsEmail, IsEnum, IsOptional, IsString } from 'class-validator';
 import { Roles } from 'src/enums';
+import { IUser } from '../interfaces';
 
-export class UpdateUserDTO {
+export class UpdateUserDTO implements IUser {
   @IsOptional()
   @IsString()
   firstName: string;
@@ -12,6 +13,10 @@ export class UpdateUserDTO {
 
   @IsOptional()
   @IsString()
+  username: string;
+
+  @IsOptional()
+  @IsEmail()
   email: string;
 
   @IsOptional()
