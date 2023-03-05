@@ -1,6 +1,8 @@
 import { Roles } from 'src/enums';
 
 export interface TokenData {
-  sub: string;
-  role: Roles;
+  userId: string;
+  userRole: Roles;
+  iat?: number;
+  exp?: number;
 }

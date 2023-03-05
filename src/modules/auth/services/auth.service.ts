@@ -32,8 +32,8 @@ export class AuthService {
     const user = await this.userService.getUserById(payload.id);
 
     return this.signJWT({
-      role: user.role,
-      sub: user.id,
+      userRole: user.role,
+      userId: user.id,
     });
   }
 }

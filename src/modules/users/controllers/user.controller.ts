@@ -1,9 +1,12 @@
-import { BadRequestException, Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
+import { PublicAccess } from 'src/decorators';
+import { AuthGuard } from 'src/modules/auth/guards';
 import { DeleteResult, UpdateResult } from 'typeorm';
 import { UpdateUserDTO, UserDTO } from '../dtos';
 import { UserService } from '../services';
 
 @Controller('users')
+@UseGuards(AuthGuard)
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
@@ -29,6 +32,7 @@ export class UserController {
     }
   }
 
+  @PublicAccess()
   @Get(':id')
   public async getUserById(@Param('id') userId: string): Promise<UserDTO> {
     try {
