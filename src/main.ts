@@ -1,6 +1,6 @@
-import { ValidationPipe } from '@nestjs/common';
+import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { NestFactory } from '@nestjs/core';
+import { NestFactory, Reflector } from '@nestjs/core';
 import * as morgan from 'morgan';
 import { AppModule } from './app.module';
 import { CORS } from './constants';
@@ -8,6 +8,7 @@ import { CORS } from './constants';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
+  const reflector = app.get(Reflector);
 
   // CONFIGURATIONS
   app.enableCors(CORS);
@@ -19,6 +20,7 @@ async function bootstrap() {
       },
     }),
   );
+  app.useGlobalInterceptors(new ClassSerializerInterceptor(reflector));
 
   // MIDLEWARES
   app.use(morgan('dev'));
