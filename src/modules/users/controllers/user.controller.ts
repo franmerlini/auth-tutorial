@@ -1,15 +1,16 @@
 import { BadRequestException, Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
-import { PublicAccess } from 'src/decorators';
-import { AuthGuard } from 'src/modules/auth/guards';
+import { AdminAccess, PublicAccess } from 'src/decorators';
+import { AuthGuard, RolesGuard } from 'src/modules/auth/guards';
 import { DeleteResult, UpdateResult } from 'typeorm';
 import { UpdateUserDTO, UserDTO } from '../dtos';
 import { UserService } from '../services';
 
 @Controller('users')
-@UseGuards(AuthGuard)
+@UseGuards(AuthGuard, RolesGuard)
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
+  @AdminAccess()
   @Get('')
   public async getUsers(): Promise<UserDTO[]> {
     try {
@@ -21,6 +22,7 @@ export class UserController {
     }
   }
 
+  @PublicAccess()
   @Post('register')
   public async registerUser(@Body() payload: UserDTO): Promise<UserDTO> {
     try {
@@ -32,7 +34,7 @@ export class UserController {
     }
   }
 
-  @PublicAccess()
+  @AdminAccess()
   @Get(':id')
   public async getUserById(@Param('id') userId: string): Promise<UserDTO> {
     try {
@@ -44,6 +46,7 @@ export class UserController {
     }
   }
 
+  @AdminAccess()
   @Put('edit/:id')
   public async updateUser(@Param('id') userId: string, @Body() payload: UpdateUserDTO): Promise<UpdateResult> {
     try {
@@ -55,6 +58,7 @@ export class UserController {
     }
   }
 
+  @AdminAccess()
   @Delete('delete/:id')
   public async deleteUser(@Param('id') userId: string): Promise<DeleteResult> {
     try {

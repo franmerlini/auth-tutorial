@@ -1,4 +1,4 @@
 import { SetMetadata } from '@nestjs/common';
-import { PUBLIC_KEY } from 'src/constants';
+import { DECORATORS_KEYS } from 'src/constants';
 
-export const PublicAccess = () => SetMetadata(PUBLIC_KEY, true);
+export const PublicAccess = () => SetMetadata(DECORATORS_KEYS.PUBLIC, true);

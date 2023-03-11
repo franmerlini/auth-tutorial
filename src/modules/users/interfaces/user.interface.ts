@@ -1,4 +1,4 @@
-import { Roles } from 'src/enums';
+import { ROLES } from 'src/constants';
 
 export interface IUser {
   firstName: string;
@@ -6,5 +6,5 @@ export interface IUser {
   username: string;
   email: string;
   password: string;
-  role: Roles;
+  role: ROLES;
 }

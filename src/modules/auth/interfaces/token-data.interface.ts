@@ -1,8 +1,8 @@
-import { Roles } from 'src/enums';
+import { ROLES } from 'src/constants';
 
 export interface TokenData {
   userId: string;
-  userRole: Roles;
+  userRole: ROLES;
   iat?: number;
   exp?: number;
 }

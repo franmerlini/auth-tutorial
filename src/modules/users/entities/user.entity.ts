@@ -1,9 +1,8 @@
 import { Exclude } from 'class-transformer';
-import { Column, Entity, OneToMany } from 'typeorm';
-import { Roles } from '../../../enums';
+import { Column, Entity } from 'typeorm';
+import { ROLES } from '../../../constants';
 import { BaseEntity } from '../../../models';
 import { IUser } from '../interfaces';
-import { UserProjectsEntity } from './user-projects.entity';
 
 @Entity({ name: 'users' })
 export class UserEntity extends BaseEntity implements IUser {
@@ -23,9 +22,6 @@ export class UserEntity extends BaseEntity implements IUser {
   @Column()
   password: string;
 
-  @Column({ type: 'enum', enum: Roles })
-  role: Roles;
-
-  @OneToMany(() => UserProjectsEntity, (userProjects) => userProjects.user)
-  projects: UserProjectsEntity[];
+  @Column({ type: 'enum', enum: ROLES })
+  role: ROLES;
 }

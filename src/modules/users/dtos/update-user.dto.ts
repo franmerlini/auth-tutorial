@@ -1,5 +1,5 @@
 import { IsEmail, IsEnum, IsOptional, IsString } from 'class-validator';
-import { Roles } from 'src/enums';
+import { ROLES } from 'src/constants';
 import { IUser } from '../interfaces';
 
 export class UpdateUserDTO implements IUser {
@@ -24,6 +24,6 @@ export class UpdateUserDTO implements IUser {
   password: string;
 
   @IsOptional()
-  @IsEnum(Roles)
-  role: Roles;
+  @IsEnum(ROLES)
+  role: ROLES;
 }

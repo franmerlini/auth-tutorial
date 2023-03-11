@@ -1,5 +1,5 @@
 import { IsEmail, IsEnum, IsNotEmpty, IsString } from 'class-validator';
-import { Roles } from 'src/enums';
+import { ROLES } from 'src/constants';
 import { IUser } from '../interfaces';
 
 export class UserDTO implements IUser {
@@ -24,6 +24,6 @@ export class UserDTO implements IUser {
   password: string;
 
   @IsNotEmpty()
-  @IsEnum(Roles)
-  role: Roles;
+  @IsEnum(ROLES)
+  role: ROLES;
 }
