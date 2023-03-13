@@ -1,12 +1,12 @@
 import { BadRequestException, Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
-import { AdminAccess, PublicAccess } from 'src/decorators';
-import { AuthGuard, RolesGuard } from 'src/modules/auth/guards';
+import { AdminAccess, PublicAccess } from 'src/core/decorators';
+import { JwtAuthGuard, RolesGuard } from 'src/modules/auth/guards';
 import { DeleteResult, UpdateResult } from 'typeorm';
 import { UpdateUserDTO, UserDTO } from '../dtos';
 import { UserService } from '../services';
 
 @Controller('users')
-@UseGuards(AuthGuard, RolesGuard)
+@UseGuards(JwtAuthGuard, RolesGuard)
 export class UserController {
   constructor(private readonly userService: UserService) {}
 

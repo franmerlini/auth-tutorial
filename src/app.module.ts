@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { DataSourceConfig } from './config';
+import { DataSourceConfig } from './core/config';
 import { AuthModule, UsersModule } from './modules';
 
 @Module({

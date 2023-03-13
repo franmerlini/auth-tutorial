@@ -1,8 +1,6 @@
-import { ROLES } from 'src/constants';
-
 export interface TokenData {
-  userId: string;
-  userRole: ROLES;
+  id: string;
+  role: string;
   iat?: number;
   exp?: number;
 }

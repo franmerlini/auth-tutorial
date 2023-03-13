@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { NestFactory, Reflector } from '@nestjs/core';
 import * as morgan from 'morgan';
 import { AppModule } from './app.module';
-import { CORS } from './constants';
+import { CORS } from './core/constants';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

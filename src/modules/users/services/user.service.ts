@@ -55,10 +55,7 @@ export class UserService {
 
   public async findByKey(key: keyof UserDTO, value: any): Promise<UserEntity> {
     try {
-      return await this.userRepository
-        .createQueryBuilder('user')
-        .where({ [key]: value })
-        .getOne();
+      return await this.userRepository.findOne({ where: { [key]: value } });
     } catch (error) {
       throw new Error(error);
     }

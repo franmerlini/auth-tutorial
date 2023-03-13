@@ -1,23 +1,15 @@
-import { Body, Controller, Post, UnauthorizedException } from '@nestjs/common';
-import { AuthDTO } from '../dtos';
+import { Controller, Post, Req, UseGuards } from '@nestjs/common';
+import { Request } from 'express';
+import { LocalAuthGuard } from '../guards';
 import { AuthService } from '../services';
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+  @UseGuards(LocalAuthGuard)
   @Post('login')
-  public async login(@Body() payload: AuthDTO): Promise<string> {
-    try {
-      const user = await this.authService.validateUser(payload.username, payload.email, payload.password);
-
-      if (!user) {
-        throw new UnauthorizedException('Credenciales incorrectas.');
-      }
-
-      return await this.authService.generateJWT(user);
-    } catch (error) {
-      throw error;
-    }
+  async login(@Req() req: Request) {
+    return this.authService.login(req.user);
   }
 }

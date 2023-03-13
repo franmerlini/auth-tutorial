@@ -1,5 +1,5 @@
 import { IsEmail, IsEnum, IsOptional, IsString } from 'class-validator';
-import { ROLES } from 'src/constants';
+import { ROLES } from 'src/core/constants';
 import { IUser } from '../interfaces';
 
 export class UpdateUserDTO implements IUser {

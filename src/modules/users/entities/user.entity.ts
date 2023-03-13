@@ -1,6 +1,6 @@
 import { Exclude } from 'class-transformer';
 import { Column, Entity } from 'typeorm';
-import { ROLES } from '../../../constants';
+import { ROLES } from '../../../core/constants';
 import { BaseEntity } from '../../../models';
 import { IUser } from '../interfaces';
 
